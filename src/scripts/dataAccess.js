@@ -5,6 +5,8 @@ const applicationState = {
     completions: []
 }
 
+
+// 
 const API = "http://localhost:8088"  //api is equal to the local host that is active in Terminal.  This is where Json will look for the database.
 
 export const fetchRequests = () => {
