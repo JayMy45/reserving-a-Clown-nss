@@ -31,7 +31,7 @@ export const fetchRequests = () => {
 //*** saveRequest will take userInputs supplied in userRequest parameter and POST it to Server/database.json file. Then dispatch the stateChange to the main.js file to re-render the html with updated information.
 export const saveRequest = (userRequest) => {
     const fetchOptions = {
-        method: "Post"
+        method: "Post",
         headers: {
             "Content-Type": "application/json"
         },
