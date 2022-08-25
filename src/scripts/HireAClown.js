@@ -1,5 +1,6 @@
 //import in needed formulas to build html...
 import { ServiceForm } from "./ServiceForm.js"
+import { Requests } from "./Requests.js"
 
 
 export const HireAClown = () => {
@@ -12,7 +13,7 @@ export const HireAClown = () => {
 
 <section class="serviceRequests">
     <h2>Service Requests</h2>
-       
+       ${Requests()}
 </section>
     `
 }

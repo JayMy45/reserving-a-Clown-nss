@@ -29,3 +29,11 @@ that has the capability to:
   ?  - construct a state object for reservation
   ?  - pass it to function defined as an argument.
 */
+
+// ^This is to update html page with serviceForm information once a request is made...and maybe more.
+
+// 1. write getter function for request..
+// 2. import getter functions (initially for getting request) from dataAccess.js module.
+// 3. asSeenOnSinkRepair Project...create a function to get requests 
+// 4. then provide the response information to convertRequestToListElement function to be placed in html code.
+
