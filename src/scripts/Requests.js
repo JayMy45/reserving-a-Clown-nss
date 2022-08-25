@@ -16,6 +16,8 @@ const convertRequestToListElement = (request) => {
     <li class=""> 
     A new reservation has been submitted for ${request.childName} by ${request.parentName}.
     </li> 
+
+    //add button to deny 
     </div>`
 
     return html
