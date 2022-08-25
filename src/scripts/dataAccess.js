@@ -40,7 +40,7 @@ export const saveRequest = (userRequest) => {
     return fetch(`${API}/requests`, fetchOptions)
         .then(response => response.json())
         .then(() => {
-            // mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
+            mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
         })
 }
 
