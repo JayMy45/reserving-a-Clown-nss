@@ -6,7 +6,23 @@
 
 
 //import getter functions...
-import { getRequests } from "./dataAccess.js"
+import { getRequests, denyRequest } from "./dataAccess.js"
+
+const mainContainer = document.querySelector("#container") //is this needed to so click addEvent for deleteRequest...
+
+// document.addEventListener("click",
+//     (event) => {
+//         if (event.target.id.startsWith("request--")) {
+//         }
+//     }
+// )
+
+mainContainer.addEventListener("click", click => {  //click listener for delete button...
+    if (click.target.id.startsWith("request--")) {
+        const [, requestId] = click.target.id.split("--")
+        denyRequest(parseInt(requestId))
+    }
+})
 
 
 //build html with this function to be called upon later...parameter will be passed through function when called to export request outputs
@@ -16,12 +32,13 @@ const convertRequestToListElement = (request) => {
     <li class=""> 
     A new reservation has been submitted for ${request.childName} by ${request.parentName}.
     </li> 
-
-    //add button to deny 
+    <button class="button" id="request--${request.id}">Deny</button>
     </div>`
 
+    //add button to deny 
     return html
 }
+
 
 //export Request function to return html to HireAClown.js
 export const Requests = () => {
@@ -30,7 +47,7 @@ export const Requests = () => {
 
     let html = `
     <ul class="no-bullets">
-    ${requests.map(convertRequestToListElement)}.join("")
+    ${requests.map(convertRequestToListElement).join("")}
     </ul>`
 
 

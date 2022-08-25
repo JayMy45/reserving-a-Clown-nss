@@ -36,14 +36,23 @@ export const saveRequest = (userRequest) => {
         },
         body: JSON.stringify(userRequest)
     }
-    // * returns the new information form the updated database.json and re-renders html using stateChanged eventListener.
-    return fetch(`${API}/requests`, fetchOptions)
-        .then(response => response.json())
+    // * returns the new information from the updated database.json and re-renders html using stateChanged eventListener.
+    return fetch(`${API}/requests`, fetchOptions) //access API Request key in database.json
+        .then(response => response.json()) //creates a promise for database to be used 
         .then(() => {
-            // mainContainer.dispatchEvent(new CustomEvent("stateChanged"))
+            mainContainer.dispatchEvent(new CustomEvent("stateChanged"))  //this line needed to re-render the new state into HTML...clearing the forms of information.
         })
 }
 
 export const getRequests = () => {
     return applicationState.requests.map(request => ({ ...request }))
+}
+
+// ?denyRequest...
+//this function provide functionality to the deny button 
+export const denyRequest = (id) => {  //id passed from function (imported) when invoked
+    return fetch(`${API}/requests/${id}`, { method: "DELETE" }) //the method is to revise the database by deleting whichever item id matches
+        .then(() => {
+            mainContainer.dispatchEvent(new CustomEvent("stateChanged")) //the page will be re-rendered after the process is complete.
+        })
 }
