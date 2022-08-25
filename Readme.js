@@ -37,3 +37,14 @@ that has the capability to:
 // 3. asSeenOnSinkRepair Project...create a function to get requests 
 // 4. then provide the response information to convertRequestToListElement function to be placed in html code.
 
+
+//^create a button to delete reservations
+
+/* 
+    1. create button in html with id should contain primary keys for request (requestId or request.id?).
+    2. add a click event listener to react to button being clicked.
+    3. create export function in data access module
+        - contain a fetch() call to request from API 
+        -use DELETE method
+        - specify the id of the reservation to be deleted.
+ */
