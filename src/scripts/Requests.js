@@ -28,7 +28,7 @@ export const Requests = () => {
 
     let html = `
     <ul class="no-bullets">
-    ${requests.map(convertRequestToListElement).join("")}
+    ${requests.map(convertRequestToListElement)}.join("")
     </ul>`
 
 
