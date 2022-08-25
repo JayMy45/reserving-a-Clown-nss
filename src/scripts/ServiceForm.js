@@ -1,7 +1,7 @@
 import { saveRequest } from "./dataAccess.js"
 
 //this module will be used to build HTML code that will provide the fillable form for users to interact with...
-//eventListner below whenever submitRequest (button) is clicked will define update the defined variables with userInputs.
+//eventListener below whenever submitRequest (button) is clicked will define update the defined variables with userInputs.
 const mainContainer = document.querySelector("#container")  //This provides access to the container id ("#container")
 
 mainContainer.addEventListener("click", clickEvent => {

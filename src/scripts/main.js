@@ -13,3 +13,12 @@ const render = () => {
 }
 
 render()
+
+
+//This function re-renders html whenever a stateChanged eventListener is activated
+mainContainer.addEventListener(
+    "stateChanged",
+    customEvent => {
+        render()
+    }
+)
