@@ -14,7 +14,7 @@ const applicationState = {
 const API = "http://localhost:8088"  //api is equal to the local host that is active in Terminal.  This is where Json will look for the database.
 
 
-// & Requests
+// & REQUESTS
 //? - fetchRequest function will access requests located in API then store it in applicationState function above with the key of request:   .
 export const fetchRequests = () => {
     return fetch(`${API}/requests`)
