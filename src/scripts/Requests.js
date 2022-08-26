@@ -53,7 +53,7 @@ const convertRequestToListElement = (request) => {
 
     if (foundCompletion) {
 
-        html += `<div class="reservationList>
+        html += `<div class="reservationList--completion">
         <li class=""> 
         ${clowns.map(
             clown => {
@@ -70,9 +70,9 @@ const convertRequestToListElement = (request) => {
 
     } else {
 
-        html += `<div class="reservationList>
+        html += `<div class="reservationList--incomplete">
         <li class="">
-            A new reservation has been submitted for ${request.childName} by ${request.parentName}.
+            New reservation submitted for ${request.parentName}.
         </li> 
         <select class="clowns" id="clowns"> 
             <option value="">Choose</option>
@@ -84,7 +84,7 @@ const convertRequestToListElement = (request) => {
             }
         </select>
 
-        <button class="button" id = "request--${request.id}"> Deny</button>
+        <button class="button__deny" id = "request--${request.id}"> Deny</button>
 
      </div>`
 

@@ -5,9 +5,8 @@ import { Requests } from "./Requests.js"
 
 export const HireAClown = () => {
     return `
-    <h1>Hire A Clown</h1>
     
-<section class="serviceForm">
+<section  class="serviceFor">
         ${ServiceForm()}
 </section>
 

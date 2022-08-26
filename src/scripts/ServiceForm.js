@@ -33,7 +33,10 @@ mainContainer.addEventListener("click", clickEvent => {
 
 //create export function to build html buttons and panes...
 export const ServiceForm = () => {
-    let html = `
+    let html = ` <section class="serviceForm">
+    <div>
+    <h3>Reserve a spot here</h3>
+    </div>
         <div class="field">
             <label class="label" for="userParentName">Parent Name</label>
             <input type="text" name="userParentName" class="input" />
@@ -58,6 +61,7 @@ export const ServiceForm = () => {
             <label class="label" for="serviceDate">Date needed</label>
             <input type="date" name="serviceDate" class="input" />
         </div>
+        </section>
 
         <button class="button" id="submitReservation">Submit Reservation</button>
     `
