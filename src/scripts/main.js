@@ -1,4 +1,4 @@
-import { fetchRequests, fetchClowns } from "./dataAccess.js";
+import { fetchRequests, fetchClowns, fetchCompletions } from "./dataAccess.js";
 import { HireAClown } from "./HireAClown.js";
 
 export const mainContainer = document.querySelector("#container");
@@ -6,6 +6,7 @@ export const mainContainer = document.querySelector("#container");
 const render = () => {
     fetchRequests()
         .then(() => fetchClowns())
+        .then(() => fetchCompletions())
         .then(
             () => {
                 mainContainer.innerHTML = HireAClown()

@@ -6,7 +6,7 @@
 
 
 //import getter functions...
-import { getRequests, denyRequest, getClowns } from "./dataAccess.js"
+import { getRequests, getClowns, getCompletions, denyRequest, saveCompletions } from "./dataAccess.js"
 
 const mainContainer = document.querySelector("#container") //is this needed to so click addEvent for deleteRequest...
 
@@ -29,37 +29,58 @@ mainContainer.addEventListener("change", (event) => {
             clownId: parseInt(clownId),
             date_created: Date.now()
         }
-        saveCompletion(completion)
+        saveCompletions(completion)
     }
 })
 
 //build html with this function to be called upon later...parameter will be passed through function when called to export request outputs
 const convertRequestToListElement = (request) => {
 
-    let clowns = getClowns()
+    const clowns = getClowns()
+    const completions = getCompletions()
+
+
+    const foundCompletion = completions.find(
+        (complete) => {
+            return request.id === complete.resoId
+        }
+    )
 
     //add dropbox to html to display choice of clown.
     //add fetch() function to dataAccess to import the clowns...
-    let html = `
-    <div class="reservationList>
+    let html = ""
+
+    if (foundCompletion) {
+
+        html += `<div class="reservationList>
         <li class=""> 
+           The reservation for ${request.parentName} was completed on ${foundCompletion.date_created} by ${clowns.name1}
+        </li> 
+        <button class="button" id = "request--${request.id}">Deny</button>
+     </div>`
+
+    } else {
+
+        html += `<div class="reservationList>
+        <li class="">
             A new reservation has been submitted for ${request.childName} by ${request.parentName}.
         </li> 
         <select class="clowns" id="clowns"> 
             <option value="">Choose</option>
                 ${clowns.map(
-        clown => {
-            return `<option value="${clown.id}--${clown.id}">${clown.name}</option>`
-        }
-    ).join("")
-        }
+            clown => {
+                return `<option value="${request.id}--${clown.id}">${clown.name1}</option>`
+            }
+        ).join("")
+            }
         </select>
 
         <button class="button" id = "request--${request.id}"> Deny</button>
 
      </div>`
 
-    //add button to deny 
+        //add button to deny 
+    }
     return html
 }
 
@@ -72,7 +93,7 @@ export const Requests = () => {
     let html = `
     <ul class="no-bullets">
         ${requests.map(convertRequestToListElement).join("")}
-    </ul>`
+    </ul> `
 
 
     return html

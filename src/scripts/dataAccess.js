@@ -58,7 +58,7 @@ export const denyRequest = (id) => {  //id passed from function (imported) when 
         })
 }
 
-// & CLOWNS
+// &       CLOWNS
 //declare fetch function to access clowns: in database.json
 export const fetchClowns = () => {
     return fetch(`${API}/clowns`)
@@ -69,7 +69,44 @@ export const fetchClowns = () => {
             }
         )
 }
-
+//create getter function to provide copy of clowns key to other modules.
 export const getClowns = () => {
     return structuredClone(applicationState.clowns)
+}
+
+
+
+//&       COMPLETIONS
+//create save function using fetch() method POST
+export const saveCompletions = (reservationCompletion) => {
+    const fetchOptions = {
+        method: "POST",  //post information generated to API
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(reservationCompletion)  //stringify convert javascript to json so information can added to json file.
+    }
+    return fetch(`${API}/completions`, fetchOptions)
+        .then(response => response.json())
+        .then(() => {
+            mainContainer.dispatchEvent(new CustomEvent("stateChange"))  //this return updates the website by using the customChngeEvent to re-render the page whenever save is initiated.
+        })
+}
+
+
+//also need access to the completion information from the updated API therefore need to declare a fetch to fetchCompletion to export ot main.js (wherever needed)
+export const fetchCompletions = () => {
+    return fetch(`${API}/completions`)
+        .then(response => response.json())
+        .then(
+            (data) => {
+                applicationState.completions = data
+            }
+
+        )
+}
+
+//declare getter function to make a copy of the completion key in applicationState objectArray above.
+export const getCompletions = () => {
+    return structuredClone(applicationState.completions)
 }
