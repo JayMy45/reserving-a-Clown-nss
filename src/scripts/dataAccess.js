@@ -74,8 +74,6 @@ export const getClowns = () => {
     return structuredClone(applicationState.clowns)
 }
 
-
-
 //&       COMPLETIONS
 //create save function using fetch() method POST
 export const saveCompletions = (reservationCompletion) => {
@@ -89,7 +87,7 @@ export const saveCompletions = (reservationCompletion) => {
     return fetch(`${API}/completions`, fetchOptions)
         .then(response => response.json())
         .then(() => {
-            mainContainer.dispatchEvent(new CustomEvent("stateChange"))  //this return updates the website by using the customChngeEvent to re-render the page whenever save is initiated.
+            mainContainer.dispatchEvent(new CustomEvent("stateChanged"))  //this return updates the website by using the customChngeEvent to re-render the page whenever save is initiated.
         })
 }
 
