@@ -40,11 +40,26 @@ that has the capability to:
 
 //^create a button to delete reservations
 
-/* 
+/*
     1. create button in html with id should contain primary keys for request (requestId or request.id?).
     2. add a click event listener to react to button being clicked.
     3. create export function in data access module
-        - contain a fetch() call to request from API 
+        - contain a fetch() call to request from API
         -use DELETE method
         - specify the id of the reservation to be deleted.
  */
+
+
+//^create dropdown box with functionality to choose clown to complete a party
+
+/*  
+    1. add a drop box to Request that will be able to display a clown to pick to complete party reservation
+            -display select element next to each performance (Buttons or Lollipop)
+        -if a clown fulfills party request
+            - no clown dropbox displayed
+            - completion data displayed 
+        - else display dropbox with chooses.
+    2. add fetch function to dataAccess to allow access to database.json data.
+    3. define getter function to provide clown information to request.js module (use .structuredClone())
+
+*/

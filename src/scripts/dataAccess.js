@@ -6,7 +6,8 @@ const mainContainer = document.querySelector("#container") //added so that sendR
 
 const applicationState = {
     requests: [],
-    completions: []
+    completions: [],
+    clowns: []
 }
 
 
@@ -55,4 +56,20 @@ export const denyRequest = (id) => {  //id passed from function (imported) when 
         .then(() => {
             mainContainer.dispatchEvent(new CustomEvent("stateChanged")) //the page will be re-rendered after the process is complete.
         })
+}
+
+// & CLOWNS
+//declare fetch function to access clowns: in database.json
+export const fetchClowns = () => {
+    return fetch(`${API}/clowns`)
+        .then(response => response.json())
+        .then(
+            (clown) => {
+                applicationState.clowns = clown
+            }
+        )
+}
+
+export const getClowns = () => {
+    return structuredClone(applicationState.clowns)
 }
