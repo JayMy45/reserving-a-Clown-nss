@@ -6,7 +6,7 @@
 
 
 //import getter functions...
-import { getRequests, getClowns, getCompletions, denyRequest, saveCompletions } from "./dataAccess.js"
+import { getRequests, getClowns, denyRequest, saveCompletions, getCompletions } from "./dataAccess.js"
 
 const mainContainer = document.querySelector("#container") //is this needed to so click addEvent for deleteRequest...
 
@@ -27,7 +27,7 @@ mainContainer.addEventListener("change", (event) => {
         const completion = {
             resoId: parseInt(resoId),
             clownId: parseInt(clownId),
-            date_created: Date.now()
+            date_created: new Date(Date.now()).toDateString()
         }
         saveCompletions(completion)
     }
@@ -41,23 +41,32 @@ const convertRequestToListElement = (request) => {
 
 
     const foundCompletion = completions.find(
-        (complete) => {
-            return request.id === complete.resoId
+        (completion) => {
+            return request.id === completion.resoId
         }
     )
 
+
     //add dropbox to html to display choice of clown.
     //add fetch() function to dataAccess to import the clowns...
-    let html = ""
+    let html = ''
 
     if (foundCompletion) {
 
         html += `<div class="reservationList>
         <li class=""> 
-           The reservation for ${request.parentName} was completed on ${foundCompletion.date_created} by ${clowns.name1}
+        ${clowns.map(
+            clown => {
+                if (clown.id === parseInt(foundCompletion.clownId)) {
+                    return `This reservation was completed on ${foundCompletion.date_created} by ${clown.name1}`
+                }
+            }
+        ).join("")
+            }
         </li> 
-        <button class="button" id = "request--${request.id}">Deny</button>
+ 
      </div>`
+
 
     } else {
 
@@ -80,6 +89,7 @@ const convertRequestToListElement = (request) => {
      </div>`
 
         //add button to deny 
+
     }
     return html
 }
